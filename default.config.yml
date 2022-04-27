@@ -6,12 +6,24 @@ configure_terminal: true
 configure_osx: true
 
 # Set to 'true' to configure the Dock via dockutil.
-configure_dock: false
-dockitems_remove: []
-# - Launchpad
-# - TV
-# - Podcasts
-# - 'App Store'
+configure_dock: true
+dockitems_remove: 
+ - Launchpad
+ - TV
+ - Podcasts
+ - 'App Store'
+ - Maps
+ - Photos
+ - FaceTime
+ - Contacts
+ - Reminders
+ - Notes
+ - Music
+ - Keynote
+ - Numbers
+ - Pages
+ - 'System Preferences'
+
 dockitems_persist: []
 # - name: "Sublime Text"
 #   path: "/Applications/Sublime Text.app/"
@@ -24,70 +36,95 @@ sudoers_custom_config: ''
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+dotfiles_repo: https://github.com/JBarrskog/dotfiles.git 
 dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
-dotfiles_files:
-  - .zshrc
-  - .gitignore
-  - .inputrc
-  - .osx
-  - .vimrc
+dotfiles_repo_local_destination: $HOME/dotfiles/
 
 homebrew_installed_packages:
-  # - ansible # Installed via Pip.
-  - autoconf
-  - bash-completion
-  - doxygen
-  - gettext
-  - gifsicle
+  - ack
+  - bat
+  - cloc
+  - exa
+  - fzf
   - git
+  - git-delta
+  - gnupg
   - github/gh/gh
   - go
-  - gpg
+  - grep
+  - htop
   - httpie
   - iperf
-  - libevent
-  - sqlite
-  - mcrypt
+  - lazygit
+  - markdown
+  - neovim
+  - python
+  - python3
   - nmap
   - node
   - nvm
-  - php
+  - shellcheck
   - ssh-copy-id
-  - cowsay
-  - readline
   - openssl
   - pv
+  - tmux
   - wget
-  - wrk
-  - zsh-history-substring-search
+  - z
+  - zsh
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - homebrew/cask-fonts
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - chromedriver
+  - alfred
+  - bettertouchtool
+  - discord
   - docker
-  - dropbox
   - firefox
-  - google-chrome
-  - handbrake
-  - licecap
-  - sequel-ace
+  - istat-menus
+  - kitty
+  - obsidian
+  - rocket
   - slack
-  - sublime-text
+  - spotify
+  - transmission
   - transmit
   - vagrant
+  - wireshark
+  # FONTS
+  - font-3270-nerd-font
+  - font-cascadia-mono
+  - font-cinzel
+  - font-fira-code
+  - font-fira-code-nerd-font
+  - font-jetbrains-mono
+  - font-sauce-code-pro-nerd-font
+    #- font-source-code-pro
 
 # See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps: []
+mas_installed_apps: 
+  - { id: 1333542190, name: "1Password" }
+  - { id: 975937182, name: "Fantastical" }
+  - { id: 409183694, name: "Keynote" }
+  - { id: 409203825, name: "Numbers" }
+  - { id: 409201541, name: "Pages" }
+  - { id: 639968404, name: "Parcel" }
+  - { id: 1568262835, name: "Super Agent" }
+  - { id: 1425368544, name: "Timery" }
+  - { id: 1451685025, name: "WireGuard" }
+  - { id: 497799835, name: "XCode" }
+mas_signin_dialog: true
 mas_email: ""
 mas_password: ""
 
-osx_script: "~/.osx --no-restart"
+mas_uninstalled_apps:
+  - { id: 408981434, name: "iMovie" }
+  - { id: 682658836, name: "GarageBand" }
+
+osx_script: "~/.config/.osx --no-restart"
 
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
@@ -108,24 +145,6 @@ pip_packages: []
 # - name: mkdocs
 #   state: present # present/absent/latest, default: present
 #   version: "0.16.3" # default: N/A
-
-# Set to 'true' to configure Sublime Text.
-configure_sublime: false
-sublime_base_path: '~/Library/Application Support/Sublime Text'
-sublime_config_path: "Packages/User"
-sublime_package_control:
-  - "DocBlockr"
-  - "Dockerfile Syntax Highlighting"
-  - "FileDiffs"
-  - "GitHub Flavored Markdown Preview"
-  - "Jinja2"
-  - "Package Control"
-  - "PHP-Twig"
-  - "Pretty JSON"
-  - "SublimeLinter"
-  - "SublimeLinter-contrib-yamllint"
-  - "TrailingSpaces"
-  - "WordCount"
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []

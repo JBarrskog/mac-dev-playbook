@@ -1,0 +1,17 @@
+---
+- name: Ensure dotfiles repository is cloned locally.
+  git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_repo_local_destination }}"
+      #version: "{{ dotfiles_repo_version }}"
+    accept_hostkey: "{{ dotfiles_repo_accept_hostkey }}"
+    bare: yes
+  register: git_output
+  become: false
+
+- name: Checkout dotfiles bare-repo.
+  command: "/usr/local/bin/git --git-dir={{ dotfiles_repo_local_destination }} --work-tree=$HOME checkout"
+  register: existing_dotfile_info
+    #failed_when: false
+    #check_mode: false
+  become: false
