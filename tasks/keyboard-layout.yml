@@ -1,0 +1,25 @@
+---
+- name: Check if directory exists.
+  stat:
+    path: /Library/Keyboard Layouts
+  register: folder
+
+- name: Create directory for keyboard layouts if it doesn't exist.
+  file:
+    path: /Library/Keyboard Layouts
+    state: directory
+    owner: 'root'
+    group: 'wheel'
+    mode: '755'
+  become: true
+  when: folder.stat.exists == false
+
+- name: Download the keyboard layout.
+  get_url:
+    url: https://raw.githubusercontent.com/AlbertVeli/Swedish-Dvorak--svdvorak--for-OSX/master/SwedishDvorak.keylayout
+    dest: /Library/Keyboard Layouts/SwedishDvorak.keylayout
+    mode: '644'
+    owner: 'root'
+    group: 'wheel'
+  become: true
+
